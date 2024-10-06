@@ -23,7 +23,8 @@ class Deobfuscator:
         self.initial_file = initial_file
         self.layer = 0
         self.max_layers = max_layers
-        self.temp_dir = tempfile.TemporaryDirectory()
+        # self.temp_dir = tempfile.TemporaryDirectory()
+        self.temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
 
     def deobfuscate(self):
         file_path = self.initial_file
@@ -34,7 +35,7 @@ class Deobfuscator:
             code = self._read_file(file_path)
 
             # Replace 'exec' with 'print' to reveal the next layer
-            modified_code = code.replace('exec', 'print')
+            modified_code = code.replace('exec(', 'print(')
 
             # Execute the modified code to reveal the next layer
             revealed_code = self._execute_code(modified_code)
@@ -167,6 +168,7 @@ class Deobfuscator:
             sys.exit(1)
 
     def cleanup(self):
+        input("Press Enter to exit...")
         self.temp_dir.cleanup()
 
 if __name__ == "__main__":
