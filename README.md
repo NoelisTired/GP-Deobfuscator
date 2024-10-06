@@ -4,3 +4,5 @@ This replaces exec functions to print function; recusively. because doing this m
 
 
 Use at your own risk; i dont claim responsibility for your retardation
+
+I made this for Ghalibie Obfuscator, which is a ghetto obfuscator
